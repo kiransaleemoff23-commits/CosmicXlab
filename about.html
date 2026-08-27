@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | CosmixLab</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link rel="stylesheet" href="about.css">
+
+</head>
+<body>
+<!-- ================= PRELOADER START ================= -->
+<div id="preloader">
+  <div class="flask">
+    <div class="neck"></div>
+    <div class="bulb"></div>
+
+    <div class="bubble" style="--i:0"></div>
+    <div class="bubble" style="--i:1"></div>
+    <div class="bubble" style="--i:2"></div>
+  </div>
+</div>
+
+<style>
+/* HIDE PAGE BEFORE LOADING */
+body:not(.page-loaded) #main-content {
+    opacity: 0;
+}
+
+/* RESET */
+body,html{
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow:hidden;
+}
+
+/* PRELOADER BACKDROP */
+#preloader{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:#ffe6f2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+/* FLASK */
+.flask{
+  position:relative;
+  width:40px;
+  height:80px;
+  animation: tilt 1.2s linear infinite;
+}
+
+/* ROUND BULB */
+.bulb{
+  width:40px;
+  height:40px;
+  background:linear-gradient(to top,#ffc0e0 60%,#ffe6f2 60%);
+  border:3px solid #ff66b2;
+  border-radius:50%;
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+
+/* NECK */
+.neck{
+  width:12px;
+  height:35px;
+  background:#ffe6f2;
+  border:3px solid #ff66b2;
+  border-bottom:none;
+  border-radius:6px;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:0;
+}
+
+/* BUBBLES */
+.bubble{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  width:6px;
+  height:6px;
+  background:#ffb3d9;
+  border-radius:50%;
+  animation: rise 1.8s infinite ease-in;
+  animation-delay:calc(var(--i)*0.35s);
+}
+
+/* ANIMATIONS */
+@keyframes rise{
+  0%{transform:translateX(-50%) translateY(0) scale(0.5);opacity:0}
+  40%{opacity:1}
+  100%{transform:translateX(-50%) translateY(-60px) scale(1);opacity:0}
+}
+
+@keyframes tilt{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+</style>
+
+<script>
+const start = Date.now();
+
+window.addEventListener("load", () => {
+    const p = document.getElementById("preloader");
+    const elapsed = Date.now() - start;
+
+    setTimeout(() => {
+        p.style.transition = "opacity 0.5s";
+        p.style.opacity = "0";
+
+        setTimeout(() => {
+            p.style.display = "none";
+            document.body.style.overflow = "auto";
+            document.body.classList.add("page-loaded"); // show page now
+        }, 500);
+
+    }, Math.max(2000 - elapsed, 0)); // minimum 2 sec
+});
+</script>
+<!-- ================= PRELOADER END ================= -->
+
+<!-- WRAP ALL YOUR PAGE CONTENT INSIDE THIS -->
+<div id="main-content">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">CosmixLab</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="DIY.html">DIY</a></li>
+        <li class="nav-item"><a class="nav-link" href="decode.html">Ingredient Decoder</a></li>
+        <li class="nav-item"><a class="nav-link" href="skin.html">Skin Science</a></li>
+        <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>About CosmixLab</h1>
+    <p>Simple. Clear. Science-based skincare for everyone.</p>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="content container">
+  <div class="section-card fade-in">
+    <h2>Who We Are</h2>
+    <p>CosmixLab is here to make skincare education easy and reliable. We turn complex skin science into <strong>clear, actionable insights</strong> anyone can understand.</p>
+  </div>
+
+  <div class="section-card fade-in">
+    <h2>What We Do</h2>
+    <ul>
+      <li>✔ Ingredient breakdowns explained simply</li>
+      <li>✔ DIY skincare guides that are safe and fun</li>
+      <li>✔ Product decoding so you know exactly what you're using</li>
+      <li>✔ Visual guides for easy understanding</li>
+    </ul>
+  </div>
+
+  <div class="section-card fade-in">
+    <h2>Our Mission</h2>
+    <p>We aim to simplify skincare without compromising accuracy. Our goal is to empower you to make confident decisions about your routine and products.</p>
+  </div>
+
+  <div class="section-card fade-in">
+    <h2>Our Values</h2>
+    <ul>
+      <li>✔ <strong>Clarity:</strong> Simple explanations without confusion</li>
+      <li>✔ <strong>Honesty:</strong> Science-backed information only</li>
+      <li>✔ <strong>Inclusivity:</strong> Skincare guidance for all skin types</li>
+    </ul>
+  </div>
+
+  <div class="section-card faq-section fade-in">
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Q:</strong> Is your content scientifically accurate?<br>
+       <strong>A:</strong> Yes! We simplify science but never misrepresent facts.</p>
+    <p><strong>Q:</strong> Are DIY recipes safe?<br>
+       <strong>A:</strong> Only gentle, beginner-friendly recipes are shared.</p>
+    <p><strong>Q:</strong> Can beginners use the site?<br>
+       <strong>A:</strong> Absolutely — everything is written for beginners.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 CosmixLab. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Fade-in and Navbar Scroll JS -->
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Navbar scroll effect
+    const navbar = document.querySelector('.custom-navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Fade-in on scroll
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer){
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  });
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CosmixLab</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- HOME CSS -->
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+<!-- ================= PRELOADER START ================= -->
+<div id="preloader">
+  <div class="flask">
+    <div class="neck"></div>
+    <div class="bulb"></div>
+
+    <div class="bubble" style="--i:0"></div>
+    <div class="bubble" style="--i:1"></div>
+    <div class="bubble" style="--i:2"></div>
+  </div>
+</div>
+
+<style>
+/* HIDE PAGE BEFORE LOADING */
+body:not(.page-loaded) #main-content {
+    opacity: 0;
+}
+
+/* RESET */
+body,html{
+  margin:0;
+  padding:0;
+  height:100%;
+  overflow:hidden;
+}
+
+/* PRELOADER BACKDROP */
+#preloader{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:#ffe6f2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+
+/* FLASK */
+.flask{
+  position:relative;
+  width:40px;
+  height:80px;
+  animation: tilt 1.2s linear infinite;
+}
+
+/* ROUND BULB */
+.bulb{
+  width:40px;
+  height:40px;
+  background:linear-gradient(to top,#ffc0e0 60%,#ffe6f2 60%);
+  border:3px solid #ff66b2;
+  border-radius:50%;
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+
+/* NECK */
+.neck{
+  width:12px;
+  height:35px;
+  background:#ffe6f2;
+  border:3px solid #ff66b2;
+  border-bottom:none;
+  border-radius:6px;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:0;
+}
+
+/* BUBBLES */
+.bubble{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  width:6px;
+  height:6px;
+  background:#ffb3d9;
+  border-radius:50%;
+  animation: rise 1.8s infinite ease-in;
+  animation-delay:calc(var(--i)*0.35s);
+}
+
+/* ANIMATIONS */
+@keyframes rise{
+  0%{transform:translateX(-50%) translateY(0) scale(0.5);opacity:0}
+  40%{opacity:1}
+  100%{transform:translateX(-50%) translateY(-60px) scale(1);opacity:0}
+}
+
+@keyframes tilt{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+</style>
+
+<script>
+const start = Date.now();
+
+window.addEventListener("load", () => {
+    const p = document.getElementById("preloader");
+    const elapsed = Date.now() - start;
+
+    setTimeout(() => {
+        p.style.transition = "opacity 0.5s";
+        p.style.opacity = "0";
+
+        setTimeout(() => {
+            p.style.display = "none";
+            document.body.style.overflow = "auto";
+            document.body.classList.add("page-loaded"); // show page now
+        }, 500);
+
+    }, Math.max(2000 - elapsed, 0)); // minimum 2 sec
+});
+</script>
+<!-- ================= PRELOADER END ================= -->
+
+<!-- WRAP ALL YOUR PAGE CONTENT INSIDE THIS -->
+<div id="main-content">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">CosmixLab</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="DIY.html">DIY</a></li>
+        <li class="nav-item"><a class="nav-link" href="decode.html">Ingredient Decoder</a></li>
+        <li class="nav-item"><a class="nav-link" href="skin.html">Skin Science</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="particleCanvas"></canvas>
+
+  <div class="hero-left">
+    <h1>Welcome to CosmixLab</h1>
+    <p>The science of skin — made simple.</p>
+  </div>
+</section>
+
+<!-- 🌸 REVIEW FEATURE SECTION -->
+<section class="review-feature" style="background:#ffe1ee; padding:80px 20px; text-align:center;">
+  <div class="container">
+    <h2 style="color:#d1367e; font-size:2.6rem; margin-bottom:15px;">
+      Honest Reviews, Real People 💬
+    </h2>
+
+    <p style="font-size:1.2rem; max-width:700px; margin:auto; color:#444;">
+      Thousands of people use CosmixLab to understand their skin better.  
+      Read real feedback from users who tried our DIYs, Decoder, and skin guides.
+    </p>
+
+    <button class="review-btn" style="margin-top:25px;" onclick="location.href='review.html'">
+      Read All Reviews →
+    </button>
+  </div>
+</section>
+
+<!-- White separator -->
+<section style="height:70px; background:white;"></section>
+
+<!-- 🌸 INGREDIENT DECODER SECTION -->
+<section class="decoder" style="background:#fff0f7; padding:100px 20px;">
+  <div class="container decoder-flex">
+    <div class="decoder-text">
+      <h2>Ingredient Decoder 🔍</h2>
+      <p style="font-size:1.2rem; color:#555;">
+        Ever looked at a product label and felt confused?  
+        We simplify every ingredient — from gentle to harsh —  
+        so you can pick products confidently.
+      </p>
+
+      <button class="decode-btn" onclick="location.href='decode.html'">Try Decoder →</button>
+    </div>
+
+    <div class="decoder-img">
+      <img src="decode.jpg" alt="Decoding Image">
+    </div>
+  </div>
+</section>
+
+<!-- 🌸 WHY CHOOSE US SECTION -->
+<section class="why-choose-us" style="background:#ffe6f0; padding:100px 20px; text-align:center;">
+  <div class="container">
+    <h2 style="color:#d1367e; font-size:2.6rem; margin-bottom:15px;">
+      Why Choose CosmixLab? 💖
+    </h2>
+    <p style="font-size:1.2rem; max-width:700px; margin:auto; color:#444; margin-bottom:60px;">
+      We make skincare simple, fun, and effective. Here’s why our users love us:
+    </p>
+
+    <div class="row justify-content-center" style="gap:30px;">
+      <!-- CARD 1 -->
+      <div class="col-md-3" style="background:white; border-radius:20px; padding:30px; box-shadow:0 8px 20px rgba(0,0,0,0.08);">
+        <h4 style="color:#d1367e; margin-bottom:15px;">Science-backed</h4>
+        <p style="color:#555; font-size:0.95rem;">
+          Every tip, DIY, and recommendation is supported by real skincare science.
+        </p>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="col-md-3" style="background:white; border-radius:20px; padding:30px; box-shadow:0 8px 20px rgba(0,0,0,0.08);">
+        <h4 style="color:#d1367e; margin-bottom:15px;">Skin-type Friendly</h4>
+        <p style="color:#555; font-size:0.95rem;">
+          Recommendations are personalized for dry, oily, combination, or sensitive skin.
+        </p>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="col-md-3" style="background:white; border-radius:20px; padding:30px; box-shadow:0 8px 20px rgba(0,0,0,0.08);">
+        <h4 style="color:#d1367e; margin-bottom:15px;">Beginner-friendly</h4>
+        <p style="color:#555; font-size:0.95rem;">
+          Easy to understand guides and DIYs anyone can follow at home.
+        </p>
+      </div>
+    </div>
+
+    <button class="about-btn" style="margin-top:50px; padding:12px 25px; background:#d1367e; color:white; border:none; border-radius:30px; cursor:pointer;"
+      onclick="location.href='about.html'">
+      Learn More About Us →
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2025 Cosmix Lab. All Rights Reserved.
+</footer>
+
+<!-- PARTICLES + NAV SCRIPT -->
+<script>
+const navbar = document.querySelector('.custom-navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+</script>
+
+<script>
+const canvas = document.getElementById('particleCanvas');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width = canvas.offsetWidth;
+let height = canvas.height = canvas.offsetHeight;
+
+const particles = [];
+const particleCount = 50;
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    r: Math.random() * 3 + 1,
+    dx: (Math.random() - 0.5) * 0.2,
+    dy: (Math.random() - 0.5) * 0.2,
+    alpha: Math.random() * 0.5 + 0.3
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  particles.forEach(p => {
+    p.x += p.dx;
+    p.y += p.dy;
+    if (p.x < 0 || p.x > width) p.dx *= -1;
+    if (p.y < 0 || p.y > height) p.dy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(255,255,255,${p.alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</body>
+</html>

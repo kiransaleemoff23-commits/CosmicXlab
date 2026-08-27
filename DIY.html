@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DIY Home Remedies</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+/* ---------- BASE STYLES ---------- */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff0f8;
+  color: #5a3d7a;
+  overflow-x: hidden;
+}
+
+/* ---------- NAVBAR ---------- */
+.custom-navbar {
+  background-color: rgb(236, 117, 157);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  transition: background-color 0.6s, box-shadow 0.3s;
+  padding: 0.3rem 0;
+}
+.custom-navbar.scrolled {
+  background-color: rgb(231, 114, 143);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ---------- HERO ---------- */
+header {
+  height: 60vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: url('diy3.jpg') no-repeat center center;
+  background-size: cover;
+}
+header::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.35);
+  z-index: 1;
+}
+header h1, header p {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-shadow: 0 0 20px #000;
+  margin: 0;
+  font-weight: bold;
+}
+header h1 { font-size: 3rem; animation: glow 2s infinite alternate; }
+header p { font-size: 1.2rem; margin-top: 10px; animation: fadeIn 3s ease-in; }
+
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes glow { 
+  from { text-shadow:0 0 10px #fff,0 0 20px #ffb6d9,0 0 30px #ff65a3;} 
+  to { text-shadow:0 0 20px #fff,0 0 40px #ffb6d9,0 0 60px #ff65a3;} 
+}
+
+/* ---------- SECTIONS ---------- */
+section { padding: 40px 20px; }
+section h2 {
+  font-size: 28px;
+  border-bottom: 3px solid #ffc0d3;
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* ---------- CARDS ---------- */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+.card {
+  width: 220px;
+  height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  border-radius: 20px;
+}
+.card:hover .card-inner { transform: rotateY(180deg); }
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  text-align: center;
+}
+.card-front { background: linear-gradient(145deg,#ffb6d9,#ff65a3); color:#fff; }
+.card-front h3 { margin:0 0 8px 0; font-size:16px; }
+.card-front p { font-size:14px; }
+.card-back { background: linear-gradient(145deg,#f7cde3,#f9bcd9); color:#5a3d7a; transform: rotateY(180deg); font-size:13px; line-height:1.3; }
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: #ff65a3;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  margin-top: 30px;
+  box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
+}
+
+/* ---------- PRELOADER ---------- */
+#preloader {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:#ffe6f2;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:99999;
+}
+.flask { position:relative; width:40px; height:80px; animation: tilt 1.2s linear infinite; }
+.bulb { width:40px; height:40px; background:linear-gradient(to top,#ffc0e0 60%,#ffe6f2 60%); border:3px solid #ff66b2; border-radius:50%; position:absolute; bottom:0; left:0; }
+.neck { width:12px; height:35px; background:#ffe6f2; border:3px solid #ff66b2; border-bottom:none; border-radius:6px; position:absolute; left:50%; transform:translateX(-50%); top:0; }
+.bubble { position:absolute; bottom:10px; left:50%; width:6px; height:6px; background:#ffb3d9; border-radius:50%; animation: rise 1.8s infinite ease-in; animation-delay:calc(var(--i)*0.35s); }
+@keyframes rise { 0%{transform:translateX(-50%) translateY(0) scale(0.5);opacity:0} 40%{opacity:1} 100%{transform:translateX(-50%) translateY(-60px) scale(1);opacity:0} }
+@keyframes tilt { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+body:not(.page-loaded) #main-content { opacity:0; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  header h1 { font-size: 2rem; }
+  header p { font-size: 1rem; }
+  .card { width: 180px; height: 240px; }
+  section h2 { font-size: 22px; margin-bottom: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="flask">
+    <div class="neck"></div>
+    <div class="bulb"></div>
+    <div class="bubble" style="--i:0"></div>
+    <div class="bubble" style="--i:1"></div>
+    <div class="bubble" style="--i:2"></div>
+  </div>
+</div>
+
+<div id="main-content">
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="#">CosmixLab</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="DIY.html">DIY</a></li>
+        <li class="nav-item"><a class="nav-link" href="decode.html">Ingredient Decoder</a></li>
+        <li class="nav-item"><a class="nav-link" href="skin.html">Skin Science</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <h1>DIY Home Remedies</h1>
+  <p>Natural solutions for every skin type</p>
+</header>
+
+<!-- SECTIONS -->
+<section id="dry-skin">
+  <h2>Dry Skin</h2>
+  <div class="cards">
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Honey & Oatmeal Mask</h3><p>Moisturizes & exfoliates</p></div><div class="card-back"><p>Mix honey with oatmeal. Apply 15 min, rinse.</p></div></div></div>
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Avocado & Yogurt Mask</h3><p>Hydrates & softens</p></div><div class="card-back"><p>Mash avocado with yogurt. Apply 15 min, rinse.</p></div></div></div>
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Banana & Honey Mask</h3><p>Replenishes moisture</p></div><div class="card-back"><p>Mix mashed banana with honey. Apply 10-15 min, rinse.</p></div></div></div>
+  </div>
+</section>
+
+<section id="oily-skin">
+  <h2>Oily Skin</h2>
+  <div class="cards">
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Clay & Aloe Mask</h3><p>Controls oil & soothes</p></div><div class="card-back"><p>Mix clay with aloe gel. Apply 10-15 min, rinse.</p></div></div></div>
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Tomato & Lemon Mask</h3><p>Reduces oil</p></div><div class="card-back"><p>Mix tomato pulp with lemon. Apply 10 min, rinse.</p></div></div></div>
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Cucumber & Mint Mask</h3><p>Soothes & freshens</p></div><div class="card-back"><p>Blend cucumber with mint. Apply 15 min, rinse.</p></div></div></div>
+  </div>
+</section>
+
+<section id="sensitive-skin">
+  <h2>Sensitive Skin</h2>
+  <div class="cards">
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Cucumber & Yogurt Mask</h3><p>Reduces redness</p></div><div class="card-back"><p>Blend cucumber and yogurt. Apply 10 min, rinse.</p></div></div></div>
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Oatmeal & Milk Mask</h3><p>Calms sensitive skin</p></div><div class="card-back"><p>Mix oatmeal with milk. Apply 10-15 min, rinse.</p></div></div></div>
+  </div>
+</section>
+
+<section id="combination-skin">
+  <h2>Combination Skin</h2>
+  <div class="cards">
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Avocado & Honey Mask</h3><p>Balances dry & oily areas</p></div><div class="card-back"><p>Mix avocado with honey. Apply 15 min, rinse.</p></div></div></div>
+    <div class="card"><div class="card-inner"><div class="card-front"><h3>Yogurt & Lemon Mask</h3><p>Controls oil & hydrates</p></div><div class="card-back"><p>Mix yogurt with lemon. Apply 10 min, rinse.</p></div></div></div>
+  </div>
+</section>
+
+<footer>&copy; 2025 Cosmetic Decoder | All Rights Reserved</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const navbar = document.querySelector('.custom-navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+const start = Date.now();
+window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    const elapsed = Date.now() - start;
+    setTimeout(() => {
+        preloader.style.transition = "opacity 0.5s";
+        preloader.style.opacity = "0";
+        setTimeout(() => {
+            preloader.style.display = "none";
+            document.body.style.overflow = "auto";
+            document.body.classList.add("page-loaded");
+        }, 500);
+    }, Math.max(2000 - elapsed, 0)); 
+});
+</script>
+</body>
+</html>

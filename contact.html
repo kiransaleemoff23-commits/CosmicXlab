@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us | CosmixLab</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+/* BODY */
+body {
+  background: linear-gradient(135deg, #ffe0e6, #ffd6e0);
+  color:#333;
+  overflow-x:hidden;
+}
+.navbar-collapse {
+    background-color: rgb(236,117,157); /* same as navbar */
+    border-radius: 0 0 10px 10px; /* optional, rounded bottom corners */
+}
+/* PRELOADER */
+#preloader {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background:#ffe6f2; display:flex; justify-content:center; align-items:center; z-index:99999;
+}
+.flask { position: relative; width:40px; height:80px; animation: tilt 1.2s linear infinite; }
+.bulb { width:40px; height:40px; background: linear-gradient(to top,#ffc0e0 60%,#ffe6f2 60%);
+       border:3px solid #ff66b2; border-radius:50%; position:absolute; bottom:0; left:0; }
+.neck { width:12px; height:35px; background:#ffe6f2; border:3px solid #ff66b2; border-bottom:none;
+       border-radius:6px; position:absolute; left:50%; transform:translateX(-50%); top:0; }
+.bubble { position:absolute; bottom:10px; left:50%; width:6px; height:6px; background:#ffb3d9;
+         border-radius:50%; animation: rise 1.8s infinite ease-in; animation-delay:calc(var(--i)*0.35s); }
+@keyframes rise { 0%{transform:translateX(-50%) translateY(0) scale(0.5);opacity:0} 40%{opacity:1} 100%{transform:translateX(-50%) translateY(-60px) scale(1);opacity:0} }
+@keyframes tilt { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+
+/* MAIN CONTENT VISIBILITY */
+body:not(.page-loaded) #main-content { opacity:0; transition:opacity 0.5s; }
+body.page-loaded #main-content { opacity:1; transition:opacity 0.5s; }
+
+/* NAVBAR */
+.navbar { background-color: rgb(236,117,157); position:sticky; top:0; z-index:9999; height:60px; }
+.navbar-brand { font-weight:600; color:#fff; font-size:1.2rem; }
+.nav-link { color:#fff; font-weight:500; font-size:0.95rem; transition:0.3s; }
+.nav-link:hover, .nav-link.active { color:#ffe1f4; }
+
+/* CONTAINER */
+.container { position:relative; max-width:1200px; margin:50px auto; display:flex; flex-wrap:wrap; gap:50px; justify-content:center; align-items:flex-start; }
+
+/* CONTACT FORM & INFO */
+.contact-form, .contact-info {
+  background:#fff; padding:25px; border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.05); flex:1 1 400px;
+}
+.contact-form h2, .contact-info h2 { text-align:center; color:#ff69b4; margin-bottom:15px; }
+.contact-info a { color:#ff69b4; text-decoration:none; }
+.contact-info a:hover { color:#ff4c9e; }
+form { display:flex; flex-direction:column; gap:15px; }
+input, textarea { padding:12px; border-radius:10px; border:1px solid #ddd; font-size:0.95rem; }
+input:focus, textarea:focus { border-color:#ff69b4; outline:none; }
+textarea { resize:none; height:140px; }
+button { background:#ff69b4; color:#fff; padding:12px; border:none; border-radius:10px; cursor:pointer; }
+button:hover { background:#ff4c9e; }
+
+/* MAP */
+.map-container { margin-top:15px; border-radius:15px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.1); }
+iframe { width:100%; height:280px; border:none; }
+
+/* FOOTER */
+footer { background:#fff; padding:25px 20px; text-align:center; box-shadow:0 -5px 15px rgba(0,0,0,0.05); border-radius:10px 10px 0 0; margin-top:50px; }
+footer p { color:#555; font-size:0.9rem; margin-bottom:10px; }
+footer .socials a { display:inline-block; width:35px; height:35px; margin:0 5px; background:#ff69b4; color:#fff; border-radius:50%; line-height:35px; text-align:center; font-weight:bold; text-decoration:none; }
+footer .socials a:hover { background:#ff4c9e; transform:scale(1.1); }
+
+/* RESPONSIVE */
+@media (max-width:768px) {
+  .container { flex-direction:column; gap:30px; }
+  .contact-form, .contact-info { flex:1 1 100%; }
+  .navbar { height:50px; }
+  .navbar-brand { font-size:1rem; }
+  .nav-link { font-size:0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="flask">
+    <div class="neck"></div>
+    <div class="bulb"></div>
+    <div class="bubble" style="--i:0"></div>
+    <div class="bubble" style="--i:1"></div>
+    <div class="bubble" style="--i:2"></div>
+  </div>
+</div>
+
+<script>
+const start = Date.now();
+window.addEventListener("load", () => {
+    const p = document.getElementById("preloader");
+    const elapsed = Date.now() - start;
+    setTimeout(() => {
+        p.style.transition = "opacity 0.5s";
+        p.style.opacity = "0";
+        setTimeout(() => {
+            p.style.display = "none";
+            document.body.style.overflow = "auto";
+            document.body.classList.add("page-loaded");
+        }, 500);
+    }, Math.max(2000 - elapsed, 0));
+});
+</script>
+
+<div id="main-content">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container-fluid d-flex justify-content-between align-items-center">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">CosmixLab</a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="DIY.html">DIY</a></li>
+        <li class="nav-item"><a class="nav-link" href="decode.html">Ingredient Decoder</a></li>
+        <li class="nav-item"><a class="nav-link" href="skin.html">Skin Science</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+    <!-- CONTACT FORM -->
+    <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form action="#" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+
+    <!-- CONTACT INFO -->
+    <div class="contact-info">
+        <h2>Get in Touch</h2>
+        <div class="info-item">
+            <h3>Office Address:</h3>
+            <a href="https://www.google.com/maps" target="_blank">123 Skincare Lane, Beauty City</a>
+        </div>
+        <div class="info-item">
+            <h3>Email:</h3>
+            <a href="mailto:info@beautystore.com">info@beautystore.com</a>
+        </div>
+        <div class="info-item">
+            <h3>Phone:</h3>
+            <a href="tel:+1234567890">+1 234 567 890</a>
+        </div>
+        <div class="map-container">
+            <iframe src="https://maps.google.com/maps?q=123%20Skincare%20Lane,%20Beauty%20City&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>Follow us on</p>
+    <div class="socials">
+        <a href="#" target="_blank">F</a>
+        <a href="#" target="_blank">I</a>
+        <a href="#" target="_blank">T</a>
+        <a href="#" target="_blank">Y</a>
+    </div>
+    <p>&copy; 2025 CosmixLab. All rights reserved.</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</div> <!-- END MAIN CONTENT -->
+</body>
+</html>

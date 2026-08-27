@@ -1,0 +1,114 @@
+/* ===============================
+   RESET & VARIABLES
+=============================== */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+:root {
+  --bg-1:#ffe1f0; --bg-2:#fff0fa; --accent-1:#ff6fb8; --accent-2:#ff9bd6; --glass:rgba(255,255,255,0.5); --bright:#5a0033;
+}
+body { overflow: hidden; } /* hide scroll until page loaded */
+#preloader {
+  position: fixed; top:0; left:0;
+  width:100%; height:100%;
+  background:#ffe6f2;
+  display:flex; justify-content:center; align-items:center;
+  z-index:99999; transition: opacity 0.5s;
+}
+.flask { position:relative; width:40px; height:80px; animation: tilt 1.2s linear infinite; }
+.bulb { width:40px; height:40px; background:linear-gradient(to top,#ffc0e0 60%,#ffe6f2 60%); border:3px solid #ff66b2; border-radius:50%; position:absolute; bottom:0; left:0; }
+.neck { width:12px; height:35px; background:#ffe6f2; border:3px solid #ff66b2; border-bottom:none; border-radius:6px; position:absolute; left:50%; transform:translateX(-50%); top:0; }
+.bubble { position:absolute; bottom:10px; left:50%; width:6px; height:6px; background:#ffb3d9; border-radius:50%; animation: rise 1.8s infinite ease-in; animation-delay:calc(var(--i)*0.35s); }
+@keyframes rise { 0%{transform:translateX(-50%) translateY(0) scale(0.5);opacity:0} 40%{opacity:1} 100%{transform:translateX(-50%) translateY(-60px) scale(1);opacity:0} }
+@keyframes tilt {0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+
+/* ===============================
+   BODY & BACKGROUND
+=============================== */
+body {
+  min-height:100vh; display:flex; flex-direction:column;
+  background: radial-gradient(circle at 20% 30%, #ffd0e8, #ffe6f5, #fff0fa);
+  color: var(--bright); overflow-x:hidden; position:relative;
+}
+
+/* Background glow & floating bubbles */
+.bg-wrap, #bubble-container { position:fixed; inset:0; pointer-events:none; z-index:0; }
+.moving-gradient { position:absolute; inset:-25%; background:radial-gradient(circle,#ffb3d9,#ffd9ec,#ffeaf5); filter:blur(100px) saturate(150%); animation:floatGradient 12s ease-in-out infinite alternate; }
+.bubble { position:absolute; border-radius:50%; background:radial-gradient(circle,#ff8fcf,#ffc0e4); filter:blur(3px) saturate(160%); opacity:.9; animation:rise 12s linear infinite; }
+
+@keyframes floatGradient{0%{transform:translateY(0)}100%{transform:translateY(-6%)}} 
+@keyframes rise{0%{transform:translateY(0) scale(.8);opacity:.9}100%{transform:translateY(-120vh) scale(1);opacity:0}}
+
+/* ===============================
+   NAVBAR
+=============================== */
+.custom-navbar {
+  background:palevioletred; position:sticky; top:0; z-index:9999; transition:.6s; min-height:65px; padding:0;
+}
+.custom-navbar .container{padding:0}
+.custom-navbar .navbar-brand{font-size:1.5rem; line-height:50px}
+.custom-navbar .nav-link{line-height:50px; font-size:.95rem; padding:0}
+.custom-navbar .navbar-toggler{padding:.25rem .5rem}
+.custom-navbar.scrolled{background:rgb(243,86,172); box-shadow:0 4px 10px rgba(0,0,0,.1)}
+
+/* ===============================
+   CONTAINER & HERO
+=============================== */
+.container{flex:1 0 auto; position:relative; z-index:2; padding:30px}
+.hero{text-align:center; padding:60px 20px}
+.hero h1{font-size:46px; font-weight:900; color:#b10063; text-shadow:0 0 12px rgba(255,120,190,.45); animation:heroGlow 2s ease-in-out infinite alternate}
+.hero p{font-size:18px; color:#a84c78}
+@keyframes heroGlow{0%{transform:scale(1)}100%{transform:scale(1.03)}}
+
+/* ===============================
+   DECODER BOX
+=============================== */
+.decoder-section{display:flex; justify-content:center; padding:20px}
+.decoder-box{
+  max-width:1100px; width:100%; padding:30px; border-radius:22px;
+  background:rgba(255,255,255,.55); backdrop-filter:blur(10px);
+  border:1px solid #ffc7e2; box-shadow:0 15px 45px rgba(255,100,160,.2); transition:.25s ease;
+}
+.decoder-box:hover{transform:translateY(-6px); box-shadow:0 22px 55px rgba(255,120,170,.3)}
+
+/* ===============================
+   INPUT & PILLS
+=============================== */
+#ingredientInput{width:100%; padding:12px; margin-bottom:16px; border-radius:12px; border:1px solid #ffd3eb; background:#fff5fa; font-size:14px}
+
+.label-cap{font-size:13px; margin-bottom:6px; color:var(--accent-1)}
+.skin-pills{display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:12px}
+.skin-pill{padding:10px 16px; border-radius:20px; background:#ffe9f4; border:1px solid #ffd3eb; cursor:pointer; transition:.2s ease}
+.skin-pill.active{background:#ff9bd6; color:#fff; transform:scale(1.05)}
+
+/* ===============================
+   IMAGE UPLOAD
+=============================== */
+.image-upload{padding:16px; width:100%; max-width:400px; margin:16px auto; border:1px dashed #ffc7e2; background:#fff5fa; border-radius:14px; cursor:pointer; text-align:center}
+#preview{width:180px; display:none; margin:10px auto; border-radius:12px; animation:float 3s ease-in-out infinite alternate}
+@keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-6px)}}
+
+/* ===============================
+   BUTTON
+=============================== */
+.primary-btn{padding:14px 26px; border-radius:14px; border:none; background:linear-gradient(135deg,#ff6fbc,#ff99d6); color:#fff; font-weight:800; box-shadow:0 10px 25px rgba(255,100,180,.25); cursor:pointer; transition:.25s}
+.primary-btn:hover{transform:translateY(-6px) scale(1.08); background:linear-gradient(135deg,#ff4fa8,#ff8ccf); box-shadow:0 18px 45px rgba(255,80,160,.35)}
+
+/* ===============================
+   PRODUCT CARDS
+=============================== */
+.product-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:18px}
+.product-card{background:rgba(255,240,250,.75); border:1px solid #ffb6d9; border-radius:10px; padding:16px; text-align:center; cursor:pointer; transition:.3s}
+.product-card h4{font-size:13px; margin-bottom:6px}
+.product-card p{font-size:11px}
+.product-card:hover{background:linear-gradient(135deg,#ff8ccf,#ffb3df); color:#fff; transform:translateY(-4px) scale(1.03); box-shadow:0 12px 30px rgba(255,100,180,.3)}
+
+/* ===============================
+   RECOMMENDATION BOX
+=============================== */
+.recommendation{max-width:1000px; margin:30px auto; padding:20px; background:#ffe6f2; border-radius:18px; border:1px solid #ffc7e2; text-align:center}
+.chip{display:inline-block; padding:8px 14px; background:#ffd9ec; border-radius:20px; margin:6px; font-size:13px}
+
+/* ===============================
+   FOOTER
+=============================== */
+footer{flex-shrink:0; background:#ff8ac2; text-align:center; padding:18px; color:#fff; font-size:14px; position:relative; z-index:2}

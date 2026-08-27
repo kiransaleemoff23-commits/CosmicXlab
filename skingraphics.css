@@ -1,0 +1,107 @@
+body {
+    scroll-behavior: smooth;
+}
+
+/* Animated Pink Background */
+.bg-animated {
+    background: linear-gradient(-45deg, #ffb6e6, #ff9bd2, #ffcae6, #ff8ac2);
+    background-size: 400% 400%;
+    animation: pinkMove 10s ease infinite;
+    padding: 90px 20px;
+    text-align: center;
+    color: white;
+    border-radius: 0 0 35px 35px;
+}
+/* NAVBAR */
+.custom-navbar{
+  background:rgb(236,117,157);
+  position:sticky;
+  top:0;
+  z-index:9999;
+  transition:.4s;
+}
+.custom-navbar.scrolled{
+  background:rgb(230, 100, 132);
+  box-shadow:0 4px 10px rgba(245, 244, 244, 0.1);
+}
+@keyframes pinkMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Cards */
+.card {
+    border-radius: 20px;
+    background: #fff0f7;
+    transition: 0.3s ease;
+    text-align: center;
+}
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(255, 0, 102, 0.25);
+}
+
+/* Images */
+.card-img {
+    width: 60%;
+    margin: 0 auto 15px;
+}
+.card-img-small {
+    width: 50%;
+    margin: 0 auto 10px;
+}
+
+/* Info sections */
+.info-section {
+    padding: 40px;
+    margin-top: 30px;
+    background: #ffe3f2;
+    border-radius: 20px;
+}
+
+/* Headings */
+h2, h3 {
+    color: #d63384;
+}
+
+/* Pink Button */
+.btn-pink {
+    background-color: #ff4fa3 !important;
+    color: white !important;
+    border: none !important;
+    font-weight: 500;
+}
+.btn-pink:hover {
+    background-color: #e63c8f !important;
+    box-shadow: 0 5px 15px rgba(255, 0, 102, 0.4);
+}
+.emoji-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.emoji-icon.small {
+    font-size: 45px;
+}
+
+.emoji-icon.large {
+    font-size: 70px;
+}
+/* Hero Section with background image */
+.bg-animated {
+    /* Layer gradient on top of image */
+    background: linear-gradient(
+                    rgba(255, 182, 230, 0.6), 
+                    rgba(255, 154, 210, 0.6)
+                ),
+                url('skin.jpg') no-repeat center center; /* <-- your image path */
+    background-size: cover;
+    background-blend-mode: center;
+    animation: pinkMove 10s ease infinite;
+    padding: 50px 15px;
+    text-align: center;
+    color: rgb(3, 3, 3);
+    border-radius: 0 0 35px 35px;
+}
+

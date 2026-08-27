@@ -1,0 +1,91 @@
+<div id="preloader">
+  <div class="flask">
+    <div class="neck"></div>
+    <div class="bulb"></div>
+
+    <div class="bubble" style="--i:0"></div>
+    <div class="bubble" style="--i:1"></div>
+    <div class="bubble" style="--i:2"></div>
+  </div>
+</div>
+
+<style>
+body,html{margin:0;padding:0;height:100%;overflow:hidden;}
+
+#preloader{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  background:#ffe6f2;
+  display:flex;justify-content:center;align-items:center;
+  z-index:9999;
+}
+
+.flask{
+  position:relative;
+  width:40px;
+  height:80px;
+  animation: tilt 1.2s linear infinite;
+}
+
+.flask .bulb{
+  width:40px;
+  height:40px;
+  background:linear-gradient(to top,#ffc0e0 60%,#ffe6f2 60%);
+  border:3px solid #ff66b2;
+  border-radius:50%;
+  position:absolute;
+  bottom:0;
+  left:0;
+}
+
+.flask .neck{
+  width:12px;
+  height:35px;
+  background:#ffe6f2;
+  border:3px solid #ff66b2;
+  border-bottom:none;
+  border-radius:6px;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:0;
+}
+
+.bubble{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  width:6px;
+  height:6px;
+  background:#ffb3d9;
+  border-radius:50%;
+  animation: rise 1.8s infinite ease-in;
+  animation-delay:calc(var(--i)*0.35s);
+}
+
+@keyframes rise{
+  0%{transform:translateX(-50%) translateY(0) scale(0.5);opacity:0}
+  40%{opacity:1}
+  100%{transform:translateX(-50%) translateY(-60px) scale(1);opacity:0}
+}
+
+@keyframes tilt{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+</style>
+
+<script>
+const start = Date.now();
+
+window.addEventListener('load', () => {
+  const p = document.getElementById('preloader');
+  const elapsed = Date.now() - start;
+
+  setTimeout(() => {
+    p.style.transition = 'opacity 0.5s';
+    p.style.opacity = '0';
+    setTimeout(() => p.style.display = 'none', 500);
+    document.body.style.overflow = 'auto';
+  }, Math.max(2000 - elapsed, 0));
+});
+</script>
